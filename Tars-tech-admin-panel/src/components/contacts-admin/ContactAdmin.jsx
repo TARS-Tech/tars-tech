@@ -11,7 +11,7 @@ export const ContactsAdmin = () => {
 
   const fetchContacts = async () => {
     try {
-      const response = await fetch('https://tars-tech-backend.vercel.app/api/contacts');
+      const response = await fetch('https://tars-tech-backend-chi.vercel.app/api/contacts');
       const data = await response.json();
       setContacts(data);
     } catch (error) {
@@ -24,7 +24,7 @@ export const ContactsAdmin = () => {
   };
   const deleteContact = async () => {
     try {
-      const response = await fetch(`https://tars-tech-backend.vercel.app/api/contacts/${selectedContactId}`, {
+      const response = await fetch(`https://tars-tech-backend-chi.vercel.app/api/contacts/${selectedContactId}`, {
         method: 'DELETE',
       });
       if (response.ok) {

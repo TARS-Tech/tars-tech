@@ -14,7 +14,7 @@ export const ProductsAdmin = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await fetch("https://tars-tech-backend.vercel.app/api/products");
+      const response = await fetch("https://tars-tech-backend-chi.vercel.app/api/products");
       const data = await response.json();
       setProducts(data);
     } catch (error) {
@@ -39,7 +39,7 @@ export const ProductsAdmin = () => {
     formData.append("image", newProduct.image);
 
     try {
-      const response = await fetch("https://tars-tech-backend.vercel.app/api/products", {
+      const response = await fetch("https://tars-tech-backend-chi.vercel.app/api/products", {
         method: "POST",
         body: formData,
       });
@@ -59,7 +59,7 @@ export const ProductsAdmin = () => {
 
   const handleDelete = async () => {
     try {
-      const response = await fetch(`https://tars-tech-backend.vercel.app/api/products/${selectedProductId}`, {
+      const response = await fetch(`https://tars-tech-backend-chi.vercel.app/api/products/${selectedProductId}`, {
         method: "DELETE",
       });
       if (response.ok) {

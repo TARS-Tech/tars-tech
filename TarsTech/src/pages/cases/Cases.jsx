@@ -17,7 +17,7 @@ const Cases = () => {
       setError(null);
 
       // Replace this URL with your actual API endpoint
-      const response = await fetch('https://tars-tech-backend.vercel.app/api/cases');
+      const response = await fetch('https://tars-tech-backend-chi.vercel.app/api/cases');
 
       if (!response.ok) {
         throw new Error('Failed to fetch case studies');

@@ -22,7 +22,7 @@ export const BlogsAdmin = () => {
   const fetchBlogs = async () => {
     setLoading(true);
     try {
-      const response = await fetch("https://tars-tech-backend.vercel.app/api/blogs");
+      const response = await fetch("https://tars-tech-backend-chi.vercel.app/api/blogs");
       const data = await response.json();
       setBlogs(data);
       setLoading(false);
@@ -57,7 +57,7 @@ export const BlogsAdmin = () => {
 
     try {
       setLoading(true);
-      const response = await fetch("https://tars-tech-backend.vercel.app/api/blogs", {
+      const response = await fetch("https://tars-tech-backend-chi.vercel.app/api/blogs", {
         method: "POST",
         body: formData,
       });
@@ -83,7 +83,7 @@ export const BlogsAdmin = () => {
   const handleDelete = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`https://tars-tech-backend.vercel.app/api/blogs/${selectedBlogId}`, {
+      const response = await fetch(`https://tars-tech-backend-chi.vercel.app/api/blogs/${selectedBlogId}`, {
         method: "DELETE",
       });
 

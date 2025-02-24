@@ -17,7 +17,7 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      const response = await fetch('https://tars-tech-backend.vercel.app/api/contacts', {
+      const response = await fetch('https://tars-tech-backend-chi.vercel.app/api/contacts', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -27,7 +27,7 @@ export const CasesAdmin = () => {
   const fetchCases = async () => {
     setLoading(true);
     try {
-      const response = await fetch("https://tars-tech-backend.vercel.app/api/cases");
+      const response = await fetch("https://tars-tech-backend-chi.vercel.app/api/cases");
       const data = await response.json();
       setCases(data);
       setShowModal(false);
@@ -77,7 +77,7 @@ export const CasesAdmin = () => {
 
     try {
       setLoading(true);
-      const response = await fetch("https://tars-tech-backend.vercel.app/api/cases",
+      const response = await fetch("https://tars-tech-backend-chi.vercel.app/api/cases",
         {
           method: "POST",
           body: formData,
@@ -114,7 +114,7 @@ export const CasesAdmin = () => {
   const handleDelete = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`https://tars-tech-backend.vercel.app/api/cases/${selectedCasesId}`, {
+      const response = await fetch(`https://tars-tech-backend-chi.vercel.app/api/cases/${selectedCasesId}`, {
         method: "DELETE",
       });
 

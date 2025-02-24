@@ -17,7 +17,7 @@ const CaseSubPage = () => {
     const fetchCaseData = async () => {
       setLoading(true);
       try {
-        const response = await fetch(`https://tars-tech-backend.vercel.app/api/cases/${id}`);
+        const response = await fetch(`https://tars-tech-backend-chi.vercel.app/api/cases/${id}`);
         const data = await response.json();
         setCaseData(data);
       } catch (error) {

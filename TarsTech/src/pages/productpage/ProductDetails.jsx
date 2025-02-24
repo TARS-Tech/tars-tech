@@ -16,7 +16,7 @@ const ProductDetailPage = () => {
       setLoading(true);
 
       // console.log(id);
-      const response = await fetch(`https://tars-tech-backend.vercel.app/api/products/${id}`);
+      const response = await fetch(`https://tars-tech-backend-chi.vercel.app/api/products/${id}`);
 
       // console.log(response);
       if (!response.ok) {

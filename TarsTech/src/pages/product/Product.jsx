@@ -12,7 +12,7 @@ export default function ProductPage() {
 
   const fetchProducts = async () => {
     try {
-      const response = await fetch("https://tars-tech-backend.vercel.app/api/products")
+      const response = await fetch("https://tars-tech-backend-chi.vercel.app/api/products")
       const data = await response.json()
       setProducts(data)
       setIsLoading(false)

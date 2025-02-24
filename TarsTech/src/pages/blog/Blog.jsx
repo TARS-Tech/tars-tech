@@ -15,7 +15,7 @@ const Blog = () => {
     try {
       setIsLoading(true)
       setError(null)
-      const response = await fetch("https://tars-tech-backend.vercel.app/api/blogs")
+      const response = await fetch("https://tars-tech-backend-chi.vercel.app/api/blogs")
       if (!response.ok) {
         throw new Error("Failed to fetch blog posts")
       }
