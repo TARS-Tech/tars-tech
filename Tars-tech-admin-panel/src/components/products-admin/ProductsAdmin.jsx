@@ -13,8 +13,20 @@ export const ProductsAdmin = () => {
   }, []);
 
   const fetchProducts = async () => {
+    // Retrieve token from localStorage
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      console.error("No token found.");
+      return;
+    }
+
     try {
-      const response = await fetch("https://tars-tech-backend-chi.vercel.app/api/products");
+      const response = await fetch("https://tars-tech-backend-chi.vercel.app/api/products", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       const data = await response.json();
       setProducts(data);
     } catch (error) {
@@ -33,6 +45,15 @@ export const ProductsAdmin = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Retrieve token from localStorage
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      console.error("No token found.");
+      return;
+    }
+
     const formData = new FormData();
     formData.append("name", newProduct.name);
     formData.append("description", newProduct.description);
@@ -42,10 +63,16 @@ export const ProductsAdmin = () => {
       const response = await fetch("https://tars-tech-backend-chi.vercel.app/api/products", {
         method: "POST",
         body: formData,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
+
       if (response.ok) {
         fetchProducts();
         setNewProduct({ name: "", description: "", image: null });
+      } else {
+        console.error("Failed to add product:", await response.text());
       }
     } catch (error) {
       console.error("Error adding product:", error);
@@ -58,9 +85,21 @@ export const ProductsAdmin = () => {
   };
 
   const handleDelete = async () => {
+
+    // Retrieve token from localStorage
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      console.error("No token found.");
+      return;
+    }
+
     try {
       const response = await fetch(`https://tars-tech-backend-chi.vercel.app/api/products/${selectedProductId}`, {
         method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
       if (response.ok) {
         fetchProducts();

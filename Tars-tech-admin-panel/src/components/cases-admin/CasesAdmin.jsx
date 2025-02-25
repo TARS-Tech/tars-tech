@@ -25,9 +25,23 @@ export const CasesAdmin = () => {
   }, []);
 
   const fetchCases = async () => {
+
+    // Retrieve token from localStorage
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      console.error("No token found.");
+      return;
+    }
+
+
     setLoading(true);
     try {
-      const response = await fetch("https://tars-tech-backend-chi.vercel.app/api/cases");
+      const response = await fetch("https://tars-tech-backend-chi.vercel.app/api/cases", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       const data = await response.json();
       setCases(data);
       setShowModal(false);
@@ -50,6 +64,16 @@ export const CasesAdmin = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Retrieve token from localStorage
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      console.error("No token found.");
+      return;
+    }
+
+
     if (!newCase.title ||
       !newCase.technologies ||
       !newCase.figmaProvider ||
@@ -81,6 +105,9 @@ export const CasesAdmin = () => {
         {
           method: "POST",
           body: formData,
+          headers: {
+            Authorization:`Bearer ${token}`
+          }
         });
 
       if (response.ok) {
@@ -112,10 +139,21 @@ export const CasesAdmin = () => {
     setShowModal(true);
   };
   const handleDelete = async () => {
+    // Retrieve token from localStorage
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      console.error("No token found.");
+      return;
+    }
+
     try {
       setLoading(true);
       const response = await fetch(`https://tars-tech-backend-chi.vercel.app/api/cases/${selectedCasesId}`, {
         method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
 
       if (response.ok) {

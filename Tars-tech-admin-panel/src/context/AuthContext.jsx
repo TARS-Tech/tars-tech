@@ -59,7 +59,7 @@ export const AuthProvider = ({ children }) => {
   
   const logout = async () => {
     try {
-      await fetch("http://localhost:5000/api/auth/logout", {
+      await fetch("https://tars-tech-backend-chi.vercel.app/api/auth/logout", {
         method: "POST",
       });
       setIsLoggedIn(false);

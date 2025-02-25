@@ -20,9 +20,23 @@ export const BlogsAdmin = () => {
   }, []);
 
   const fetchBlogs = async () => {
+
+    // Retrieve token from localStorage
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      console.error("No token found.");
+      return;
+    }
+
+
     setLoading(true);
     try {
-      const response = await fetch("https://tars-tech-backend-chi.vercel.app/api/blogs");
+      const response = await fetch("https://tars-tech-backend-chi.vercel.app/api/blogs", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       const data = await response.json();
       setBlogs(data);
       setLoading(false);
@@ -44,6 +58,16 @@ export const BlogsAdmin = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Retrieve token from localStorage
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      console.error("No token found.");
+      return;
+    }
+
+
     if (!newBlog.title || !newBlog.content || !newBlog.author || !newBlog.image) {
       setMessage({ type: "error", text: "All fields are required." });
       return;
@@ -60,6 +84,10 @@ export const BlogsAdmin = () => {
       const response = await fetch("https://tars-tech-backend-chi.vercel.app/api/blogs", {
         method: "POST",
         body: formData,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+
       });
 
       if (response.ok) {
@@ -81,10 +109,22 @@ export const BlogsAdmin = () => {
     setShowModal(true);
   };
   const handleDelete = async () => {
+
+    // Retrieve token from localStorage
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      console.error("No token found.");
+      return;
+    }
+
+
     try {
       setLoading(true);
       const response = await fetch(`https://tars-tech-backend-chi.vercel.app/api/blogs/${selectedBlogId}`, {
-        method: "DELETE",
+        method: "DELETE", headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
 
       if (response.ok) {
