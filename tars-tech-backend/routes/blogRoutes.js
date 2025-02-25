@@ -4,6 +4,7 @@ const multer = require('multer');
 const axios = require('axios');
 const FormData = require('form-data');
 const Blog = require('../models/Blog');
+const authenticateToken = require("../middlewares/authMiddleware")
 
 // Cloudinary configuration
 const cloudinaryBaseUrl = 'https://api.cloudinary.com/v1_1/dxo0r3jgb/image/upload'; // Replace with your Cloudinary base URL
@@ -14,7 +15,7 @@ const storage = multer.memoryStorage(); // Store the file in memory
 const upload = multer({ storage: storage }); // Use memory storage
 
 // Add a new blog with Cloudinary image upload
-router.post('/', upload.single('image'), async (req, res) => {
+router.post('/', upload.single('image'), authenticateToken , async (req, res) => {
   try {
     const { title, content, author } = req.body;
 
@@ -71,7 +72,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // Delete a blog by ID
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', authenticateToken,async (req, res) => {
   try {
     const blog = await Blog.findByIdAndDelete(req.params.id);
     if (!blog) {

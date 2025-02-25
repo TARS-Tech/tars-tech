@@ -4,6 +4,7 @@ const multer = require('multer');
 const axios = require('axios');
 const FormData = require('form-data');
 const Case = require('../models/Case');
+const authenticateToken = require("../middlewares/authMiddleware")
 
 // Cloudinary configuration
 const cloudinaryBaseUrl = 'https://api.cloudinary.com/v1_1/dxo0r3jgb/image/upload'; // Replace with your Cloudinary base URL
@@ -15,7 +16,7 @@ const upload = multer({ storage: storage }); // Use memory storage
 
 
 // Add a new case with Cloudinary image upload
-router.post('/', upload.single('image'), async (req, res) => {
+router.post('/', upload.single('image'), authenticateToken,async (req, res) => {
   try {
     const { title, technologies, figmaProvider, whatWasBuild, whatWeAdded, problemBefore, problemSolved, author } = req.body;
 
@@ -84,7 +85,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // Delete a case by ID
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', authenticateToken,async (req, res) => {
   try {
     const caseItem = await Case.findByIdAndDelete(req.params.id);
     if (!caseItem) {

@@ -29,10 +29,10 @@ mongoose
   .catch((err) => console.error("MongoDB connection error:", err));
 
 // Routes
-app.use("/api/products", authenticateToken, productRoutes);
+app.use("/api/products", productRoutes);
 app.use("/api/contacts", contactRoutes);
-app.use("/api/blogs", authenticateToken, blogRoutes);
-app.use("/api/cases", authenticateToken, caseRoutes);
+app.use("/api/blogs", blogRoutes);
+app.use("/api/cases",  caseRoutes);
 app.use("/api/auth", authRoutes); // Use the correct route path
 
 app.listen(PORT, () => {

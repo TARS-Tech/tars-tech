@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const Contact = require('../models/Contact');
+const authenticateToken = require("../middlewares/authMiddleware")
 
-router.post('/', async (req, res) => {
+router.post('/', authenticateToken,async (req, res) => {
   try {
     const { name, email, number, message } = req.body;
     // console.log(req.body)
@@ -24,7 +25,7 @@ router.get('/', async (req, res) => {
 });
 
 // New route for deleting a contact
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', authenticateToken,async (req, res) => {
   try {
     const contact = await Contact.findByIdAndDelete(req.params.id);
     if (!contact) {
